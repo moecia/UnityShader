@@ -1,12 +1,8 @@
-  Shader "Unlit/DrawTracks"
+ Shader "Unlit/VertexShaderTest"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _Coordinate("Coordinate", Vector) = (0, 0, 0, 0)
-        _Color("Draw Color", Color) = (1, 0, 0, 0)
-        _Size("Size", Range(1, 500)) = 200
-        _Strength("Strength", Range(0, 1)) = 0.1
     }
     SubShader
     {
@@ -18,6 +14,8 @@
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            // make fog work
+            #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
 
@@ -30,28 +28,29 @@
             struct v2f
             {
                 float2 uv : TEXCOORD0;
+                UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
             };
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-            fixed4 _Coordinate, _Color;
-            half _Size, _Strength;
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
+                // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                float draw = pow(saturate(1 - distance(i.uv, _Coordinate.xy)), 500 / _Size);
-                fixed4 drawCol = _Color * (draw * _Strength);
-                return saturate(col + drawCol);
+                // apply fog
+                UNITY_APPLY_FOG(i.fogCoord, col);
+                return col;
             }
             ENDCG
         }
