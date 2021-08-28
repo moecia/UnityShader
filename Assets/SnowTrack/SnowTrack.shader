@@ -3,7 +3,7 @@ Shader "Custom/SnowTrack"
     Properties
     {
         _Tess("Tessellation", Range(1,128)) = 4
-        _Splat("SlatMap", 2D) = "black" {}
+        _Track("TrackMap", 2D) = "black" {}
         _Displacement("Displacement", Range(0, 1.0)) = 0.3
         _SnowTex ("Snow (RGB)", 2D) = "white" {}
         _SnowColor("Snow Color", Color) = (1,1,1,1)
@@ -39,12 +39,12 @@ Shader "Custom/SnowTrack"
             return UnityDistanceBasedTess(v0.vertex, v1.vertex, v2.vertex, minDist, maxDist, _Tess);
         }
 
-        sampler2D _Splat;
+        sampler2D _Track;
         float _Displacement;
 
         void disp(inout appdata v)
         {
-            float d = tex2Dlod(_Splat , float4(v.texcoord.xy,0,0)).r * _Displacement;
+            float d = tex2Dlod(_Track, float4(v.texcoord.xy,0,0)).r * _Displacement;
             v.vertex.xyz -= v.normal * d;
             v.vertex.xyz += v.normal * _Displacement;
         }
@@ -74,7 +74,7 @@ Shader "Custom/SnowTrack"
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             // Albedo comes from a texture tinted by color
-            half amount = tex2Dlod(_Splat, float4(IN.uv_Splat, 0, 0)).r;
+            half amount = tex2Dlod(_Track, float4(IN.uv_Splat, 0, 0)).r;
             fixed4 c = lerp(tex2D(_SnowTex, IN.uv_SnowTex) * _SnowColor,
                 tex2D(_GroundTex, IN.uv_GroundTex) * _GroundColor,
                 amount);

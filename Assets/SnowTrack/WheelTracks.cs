@@ -12,7 +12,7 @@ public class WheelTracks : MonoBehaviour
     public GameObject Terrain;
     public Transform[] Wheels;
 
-    private RenderTexture splatMap;
+    private RenderTexture trackTexture;
     private Material snowMaterial;
     private Material drawMateral;
     private RaycastHit hit;
@@ -28,8 +28,8 @@ public class WheelTracks : MonoBehaviour
         drawMateral.SetFloat("_Strength", BrushStrength);
 
         snowMaterial = Terrain.GetComponent<MeshRenderer>().material;
-        splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat);
-        snowMaterial.SetTexture("_Splat", splatMap);
+        trackTexture = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat);
+        snowMaterial.SetTexture("_Track", trackTexture);
     }
 
     // Update is called once per frame
@@ -40,9 +40,9 @@ public class WheelTracks : MonoBehaviour
             if (Physics.Raycast(Wheels[i].position, Vector3.down, out hit, 1f, layerMask))
             {
                 drawMateral.SetVector("_Coordinate", new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
-                var tempTex = RenderTexture.GetTemporary(splatMap.width, splatMap.height, 0, RenderTextureFormat.ARGBFloat);
-                Graphics.Blit(splatMap, tempTex);
-                Graphics.Blit(tempTex, splatMap, drawMateral);
+                var tempTex = RenderTexture.GetTemporary(trackTexture.width, trackTexture.height, 0, RenderTextureFormat.ARGBFloat);
+                Graphics.Blit(trackTexture, tempTex);
+                Graphics.Blit(tempTex, trackTexture, drawMateral);
                 RenderTexture.ReleaseTemporary(tempTex);
             }
         }
