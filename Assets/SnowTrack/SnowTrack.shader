@@ -58,7 +58,7 @@ Shader "Custom/SnowTrack"
         {
             float2 uv_GroundTex;
             float2 uv_SnowTex;
-            float2 uv_Splat;
+            float2 uv_Track;
         };
 
         half _Glossiness;
@@ -74,7 +74,7 @@ Shader "Custom/SnowTrack"
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             // Albedo comes from a texture tinted by color
-            half amount = tex2Dlod(_Track, float4(IN.uv_Splat, 0, 0)).r;
+            half amount = tex2Dlod(_Track, float4(IN.uv_Track, 0, 0)).r;
             fixed4 c = lerp(tex2D(_SnowTex, IN.uv_SnowTex) * _SnowColor,
                 tex2D(_GroundTex, IN.uv_GroundTex) * _GroundColor,
                 amount);

@@ -12,7 +12,7 @@ public class DrawTracks : MonoBehaviour
     public GameObject Terrain;
 
     private Camera drawCamera;
-    private RenderTexture splatMap;
+    private RenderTexture trackMap;
     private Material snowMaterial;
     private Material drawMateral;
     private RaycastHit hit;
@@ -27,8 +27,8 @@ public class DrawTracks : MonoBehaviour
         drawMateral.SetFloat("_Strength", BrushStrength);
 
         snowMaterial = GetComponent<MeshRenderer>().material;
-        splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat);
-        snowMaterial.SetTexture("_Splat", splatMap);
+        trackMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat);
+        snowMaterial.SetTexture("_Track", trackMap);
     }
 
     // Update is called once per frame
@@ -39,9 +39,9 @@ public class DrawTracks : MonoBehaviour
             if(Physics.Raycast(drawCamera.ScreenPointToRay(Input.mousePosition), out hit))
             {
                 drawMateral.SetVector("_Coordinate", new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
-                var tempTex = RenderTexture.GetTemporary(splatMap.width, splatMap.height, 0, RenderTextureFormat.ARGBFloat);
-                Graphics.Blit(splatMap, tempTex);
-                Graphics.Blit(tempTex, splatMap, drawMateral);
+                var tempTex = RenderTexture.GetTemporary(trackMap.width, trackMap.height, 0, RenderTextureFormat.ARGBFloat);
+                Graphics.Blit(trackMap, tempTex);
+                Graphics.Blit(tempTex, trackMap, drawMateral);
                 RenderTexture.ReleaseTemporary(tempTex);
 
             }
@@ -50,6 +50,6 @@ public class DrawTracks : MonoBehaviour
 
     private void OnGUI()
     {
-        GUI.DrawTexture(new Rect(0, 0, 32, 32), splatMap, ScaleMode.ScaleToFit, false, 1);
+        GUI.DrawTexture(new Rect(0, 0, 32, 32), trackMap, ScaleMode.ScaleToFit, false, 1);
     }
 }
