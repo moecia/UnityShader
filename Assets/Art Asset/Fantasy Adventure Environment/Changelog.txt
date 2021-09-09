@@ -1,0 +1,365 @@
+1.5.5
+Minimum supported version is now Unity 2019.3.7f1
+
+Added:
+- (URP) Support for LOD crossfading in Vegetation Studio Pro 1.4.5
+
+Changed:
+- Reorganized folder structure to adhere to the traditional Model/Materials format
+- Scripts are now separated into a Runtime/Editor folder and contain an assembly definition
+- Improved normals for the majority of trees, resulting in better directional shading
+- Normal maps for tree billboards are now actually correct, so will match a tree's shading more closely
+- Roughness and Height maps for terrain layers are now packed into a new RGBA mask map
+- Stiffness for trees is now stored in the UV3 V-component. Branch and trunk shaders have been modified to use this instead of the Alpha vertex color channel. 
+ * This makes it more straightforward to add wind motion support to custom tree models, wind strength may need to be adjusted
+- Tree models are now stored in a single FBX file per asset
+- LOD meshes for rocks/cliffs are now in the same FBX file. LOD crossfading is now enabled for them (looks best in Forward rendering)
+
+Fixed:
+- Some particle materials not always converting properly to URP
+
+Removed:
+- Option to convert from URP to Built-in RP. Instead, his can be achieved by re-importing the package.
+
+1.5.4
+
+Changed:
+- (URP) Converted all Shader Graph custom functions into Sub-graphs to solve Shader Graph's timing sensitive import errors
+
+Fixed:
+- (URP) Tree billboards not being rendered if used with Vegetation Studio Pro
+- (URP) Some materials rendering invisible in URP 11+ (2021.1 beta)
+
+1.5.3
+Minimum supported version is now Unity 2018.4.0. URP now requires v7.4.1 (available since Unity 2019.3.7f1)
+
+Added:
+- Added terrain layers (part of auto upgrade in 2018.3)
+- (URP) LOD crossfading support for vegetation shaders (already enabled by default on all prefabs)
+- (URP) Foliage bending functionality to Foliage shader
+
+Changed:
+- Assuming Linear color space by default, colors have been adjusted to fit
+- (URP) Greatly improved translucency for Foliage shader
+- Particle effects now use the Standard particle shader (this also supports camera fading)
+- Normal map inputs on cliff shaders are now correctly marked as such
+- (URP) Vegetation shaders now use the same material UI as in the built-in RP
+- URP material conversion now forces shaders to re-import after completion, as a workaround for Shader Graph import issues.
+
+Fixed:
+- Foliage bender now pushes grass/foliage away in the correct direction, regardless of the rotation of a mesh.
+
+1.5.2
+
+Added:
+- Options to convert to Built/Universal Render Pipeline under Edit/Render Pipeline menu
+- Color (HDR) field to tree branch shader. Transmission color is now also HDR-enabled.
+
+Fixed:
+- Errors in built-in water shader when reflection probe box projection wasn't enabled
+
+1.5.1
+
+Added:
+- Pigment Map Generator now has a resolution parameter, and option to assign all active terrains
+
+Fixed:
+- (URP) Foliage shader light transmission effect is now influenced by directional light intensity
+- (URP) Particle effect materials now convert completely when installing URP shaders (materials must still be selected once, before changes apply)
+
+1.5.0
+Minimum supported version is now Unity 2017.4.0
+
+Added support for the Universal Render Pipeline in Unity 2019.3+. Shaders can be unpacked and FAE materials converted through the Help menu. 
+
+Notes:
+- Grass is not available for the URP, the Stylized Grass Shader package offers a fully fledged URP grass shader. Grass materials will automatically use the foliage shader instead.
+- LOD Crossfading is unavailable in the URP
+- Custom shader UI's aren't supported by Shader Graph, material inspectors will use default formatting
+
+Added:
+- Revised water shader for the URP with improved intersection effect and shoreline waves.
+
+Changed:
+- Improved color padding on vegetation texture atlas, no longer shows dark edges on some plants on lower mipmaps
+- (URP) Tree branches, light transmission is now masked by shadows
+- Greatly reduced file size of cliff textures with no discernible quality loss (90mb savings)
+- Shader controllers for Vegetation Studio Pro are now included in this package and support URP shaders
+
+1.4.1
+Fixed:
+- Tree branch shader turning black if Directional Light was disabled or when using Mixed lighting with baked lightmaps.
+- Shaders now receive lighting from Spot/Point lights in Forward Rendering when using Vegetation Studio
+- Removed empty LOD2 from GrassPatch prefab, which prevented it from being used with Vegetation Studio Pro
+
+1.4.0
+- Unity 2019.3 compatibility verified
+- All Substance materials have been replaced by textures
+
+Added:
+- Grass patch prefab, designed for mass placement
+
+Changed:
+- Cliff shaders now support Vegetation Studio's Instanced Indirect rendering
+- Demo scenes now have post processing set up by default (Requires Post Processing package to be installed)
+
+Fixed:
+- Improved quality of tree billboard normal maps, fixes black billboards in Unity 2019.2+
+
+1.3.1
+
+Changed:
+- Shading improvements for SpeedTree assets
+
+Fixed:
+- Custom pigment map option not accessible
+
+1.3.0
+
+Added:
+- Ivy kit, consisting out of 6 variants
+- Profile and LUT for the Post Processing Stack v2
+
+Changed:
+- PigmentMapGenerator
+	* Texture operations are now performed on the GPU resulting in much faster rendering
+	* Now has the option to manually input the terrain's size and position
+- Foliage shader now has controls for global wind motion and leaf flutter
+- Wind Controller, direction is now solely determined by the object's forward axis.
+
+Fixed:
+- Black color bleeding on elephant ear plant
+- PigmentMapGenerator rendering half of the terrain when Game View is open and set to "Free Aspect"
+
+Removed:
+- Option to use legacy vertex color layout for tree branch and trunk shaders
+
+1.2.6
+- Checked for compatibility with v2.0.2 of the Substance plugin
+- Minor changes and improvements
+
+1.2.5:
+Added:
+ - Grass terrain substance, rocks layer
+ - Dirt terrain substance, more controls for rocks
+
+Fixed:
+ - PigmentMapGenerator fixes for some scenarios
+
+1.2.4:
+Fixed:
+- Grass and foliage shader, light transmission issue on OpenGL
+- PigmentMapGenerator fixes for some scenarios
+- (2018+) Compatibility with Substance plugin v2.0.1
+
+1.2.3
+Added:
+- WindController can now adjust the overall wind effect based on a WindZone's "Main" value.
+
+Fixed:
+- Water shader not compiling on MacOS when using Metal rendering
+
+Changed:
+- Foliage shader now uses a different wind animation method, resulting in less mesh deformation
+- PigmentMapGenerator, improved workflow when using MegaSplat
+- PigmentMapGenerator, improved support for mesh terrains with a centered pivot point.
+- Minor improvements to tree branch shader
+- Removed LOD group from plants with only one mesh
+
+1.2.2
+Unity 2018.1+: Substances have been converted to regular textures. Go to Help->Fantasy Adventure Environment to install Substance functionality.
+
+1.2.1
+Added:
+- Vegetation shaders now support Instanced Indirect rendering
+- Tree Branch shader now has a toggle to read SpeedTree wind for trees made using the Unity SpeedTree modeler
+
+Changed:
+- Usage of vertex color channels Blue and Alpha have been swapped, to be more in line with third-party baking tools.
+A "Use Legacy Vertex Colors" toggle has been added to the Branch and Trunk shaders to swap them back.
+- Optimized lightmap scale for all asset prefabs
+
+Fixed:
+- Warnings regarding Birch trees when using realtime GI
+
+1.2.0
+Updated minimum supported version to Unity 5.6 to make full use of GPU-instancing
+
+Added:
+- About window
+- PigmentMapGenerator support for multi-terrain setups, please view the documentation for usage instructions
+- Arrow gizmo to WindController
+- Grass shader support for Vegetation Studio's TouchReact system. Flattened grass is also tinted slightly darker.
+- Nav Mesh Obstacle component to all trees
+- WindTrails particle effect
+
+Changed:
+- Recompiled shaders using latest ASE version (1.5.0)
+- WindController no longer utilizes a Substance material
+- WindAmplitude is now a shader value
+- Sunshaft particles now use Soft Particles (Quality Settings) for better performance scaling
+- Sunshafts no longer use the Directional Light's alpha channel for opacity, added an Opacity material parameter instead
+- Grass wind tinting is now influenced by wind strength
+- FoliageBender now adds a slight dark tint to grass
+- Renamed "Resources" folder to "Source", to avoid unneccesary build inclusion
+
+Fixed:
+- Grass light transmission being visible in shadows
+
+Removed:
+- Water/Particles/RockDetail Substance materials (Had no parameters, so were baked to textures)
+
+1.1.2
+Fixed:
+- Build errors on Nintendo Switch
+- Recreated Sunshaft shaders in ASE, fixing PS4 issues
+
+Changed:
+- Removed all third party scripts from demo scene
+
+1.1.1
+Added:
+- Willow_A tree asset (with LODs, billboard and collider)
+- Willow_B tree asset (with LODs, billboard and collider)
+- Ambient Occlusion to tree trunks
+- ShaderGUI for FAE/Tree Trunk shader
+- Current Wind Controller settings information in Shader GUI's when help is toggled
+- Option under GameObject menu to create a new Wind Controller object
+
+Changed:
+Trees:
+- Wind response, Ambient Occlusion and Light Transmission for all trees has been improved and fine-tuned per tree type
+- Corrected normals on Pine_A LOD meshes
+- Corrected UVs of Spruce and Pine tree trunks so the material is less vertically stretched
+- Lowered all trees 0.3 units, so the trunk doesn't appear to float on steep terrain surfaces
+
+Wind:
+- Wind strength is now a shader function and thus can be changed during runtime
+- Wind weight parameter in shaders is renamed to "MaxWindStrength"
+
+Grass:
+- Light transmission now visible in shorter grass as well
+- Improved grass wind color influence (only brightens, rather than darkening and brightening)
+
+1.1.0
+Added:
+- Collider meshes for Palm_B and Palm_C
+- Pigment map generator now has options to flip or rotate the pigment map for mesh terrains
+- Support for a custom pigment map
+
+Changed:
+- Tree trunk gradient is now inverted, making the top darker instead of the bottom (ambient occlusion for trunks to be added)
+- Made wind vectors less uniform (Wind response for trees will soon be improved)
+- Pigment map generator now works with mesh terrains with centered pivots
+- Minor UI improvements
+- Reduced splatmap size in demo scene
+
+Fixed:
+- High trunk weight wind values elongating the trees
+
+1.0.9
+Added
+- Palm_B and Palm_C tree assets (with LODs, billboards)
+- Dead branches to palm trees with separate color controls
+- Custom inspector for WindController script
+- Option to visualize the wind vectors in the Foliage, Grass and Tree Branch shader GUI's
+
+Fixed:
+- Several warnings
+- Substance baker target folder not saving correctly
+
+1.0.8
+Added:
+- Groundcover clovers, dead branches and two elephant ear plants
+- Terrain sand material
+
+Changed:
+- PigmentmapGenerator now also works with mesh terrains
+- Recompiled shaders using Amplify Shader Editor v1.3.4 ("_MaskClipValue" parameter is now called to "_Cutoff", adjusted Shader GUI's accordingly)
+
+1.0.7
+Added:
+- New forest floor Substance material for the terrain, featuring needles, moss, roots, rocks and leafs
+- Ability to bake the Substance textures for the terrain automatically, to allow for easy itteration
+
+Changed:
+- Refactored TerrainRock material, secondary and tertiary layers have been removed, more color properties have been added
+- TerrainSnow material now has a sparkles effect when roughness is set to full
+
+1.0.6
+Added:
+- Custom material inspectors for the Foliage, Grass and Tree Branch shaders. Features buttons to toggle parameter descriptions.
+
+Changed:
+- Removed the height- and pigment map functionality from the Foliage shader. Made a seperate "Grass" shader instead, which does have these features.
+- WindController script, when added, now automatically tries to locate the FAE_WindVectors substance in the project
+- PigmentMapGenerator clears the pigment map texture from the Grass shader when it is disabled. This avoids inadvertently using a pigment map from another scene.
+
+Fixed:
+- Grass animation not working when PigmentMap is deleted
+
+1.0.5
+Added:
+- Grass billboard texture, for use on the terrain (Terrain/Textures folder)
+
+Changed:
+- Made vegetation meshes compatible with Vegetation Studio shaders
+- Checked PigmentmapGenerator compatibilty with MicroSplat, made adjustments accordingly
+- Improved usability of PigmentmapGenerator component
+
+Fixed:
+- Error catching in the PigmentmapGenerator script
+- Corrected normal map behaviour in branch substances
+- Fixed Palm bark artifacts in substance material
+
+Removed:
+- FAE_PigmentMap substance (obsolete)
+- Standard Assets third person controller
+
+1.0.4
+Added:
+- Grass blending with the terrain color is now 100% accurate, and no longer limited to the first 4 terrain textures.
+- Random rotation parameter to GrassAtlas substance
+
+Changed:
+- Polished demo scene some more + performance improvements
+- Cliff shader, increased base-intensity of detail normal map
+- Cliff prefabs, set collider to "Convex" by default, added an optional Box Collider component
+- Seperated the grass substance from the vegetation container
+- Dust motes now use the Sunshaft particle shader, so they react better to lighting conditions
+
+Fixed:
+- CliffAppearance reverting some values to prefab defaults on play
+- Face normals on fern mesh
+
+1.0.3
+Added:
+- Billboard LODs for all trees. Allows you to have much more trees on screen.
+- New Pine bark Substance material
+
+Fixed:
+- Tree branches turning black on DirectX 9
+- Color bleeding on dead pine branches
+- Wrong material on Cliff_E LODs
+
+Changed:
+- Trees now have a capsule collider, so they work as terrain trees. Tree colliders have not been removed, you can use these instead if you wish
+- The Trees Substance container has been split up, each tree type has it's own container now.
+- Spruce_B is now a little more distinct from its counterparts.
+
+1.0.2
+Added:
+- Cliff coverage feature (snow, grass, etc)
+- Custom inspector for CliffAppearance script
+- Demo scene to showcase the cliff coverage functionality
+
+Fixed:
+- Shaders now work correctly on OSX
+
+1.0.1
+Fixed:
+- Tree trunks and branches not moving synchronously when Static Batching is enabled
+- PigmentmapGenerator will now work with any uniform terrain size and position
+
+1.0.0
+Initial release

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e7a2249a0932ef74993eb9fb384681c2
+labels:
+- Environment
+- Material
+timeCreated: 1496934171
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - globalColorMap: {fileID: -911685577, guid: e65711a37f9dfb04ea27266d05cef87e, type: 3}
+  - detailNormalMap: {fileID: -244477029, guid: e65711a37f9dfb04ea27266d05cef87e,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,164 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FAE_VegetationAtlas
+  m_Shader: {fileID: 4800000, guid: e27c26c0ecebef247ba69245490f2562, type: 3}
+  m_ShaderKeywords: _ALPHATEST_ON
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: TransparentCutout
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GrassHeight:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 47904388512f50c40b25b2f6a6b898a9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noisemap:
+        m_Texture: {fileID: 1167038465, guid: b6620978afaf9234f9e6fe1cfa32c8ff, type: 3}
+        m_Scale: {x: 0.1, y: 0.1}
+        m_Offset: {x: 0, y: 0}
+    - _Normalmap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normals:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PigmentMap:
+        m_Texture: {fileID: 1574344641, guid: 1d897bcb600b6fe4985220cd34d54f67, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texturea:
+        m_Texture: {fileID: 1782529186, guid: f654a384396a5a245a9a41a56b8efbeb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WindVectors:
+        m_Texture: {fileID: -1077550208, guid: b6620978afaf9234f9e6fe1cfa32c8ff, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - WindSpeed: 0.3
+    - _AO: 0
+    - _AmbientOcclusion: 0.521
+    - _BendingInfluence: 0.2
+    - _BendingRadius: 1.5
+    - _BendingStiffness: 0.2
+    - _BendingStrength: 20
+    - _BlendSpeed: 0.028
+    - _BumpScale: 1
+    - _ColorVariation: 0.168
+    - _Colorvariation: 0
+    - _Cutoff: 0.5
+    - _Debug: 0
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _FlatLighting: 0
+    - _Float3: 0
+    - _GlobalWindMotion: 0.184
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Height: 0
+    - _HeightmapInfluence: 0
+    - _Keyword0: 0
+    - _LeafFlutter: 0.026
+    - _MaskClipValue: 0.5
+    - _MaxHeight: 0
+    - _MaxWindStrength: 1
+    - _Metallic: 0
+    - _MinHeight: -0.5
+    - _Mode: 1
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _PigmentMapHeight: 0
+    - _PigmentMapInfluence: 0
+    - _PigmentMapSize: 1024
+    - _SSSAmount: 0
+    - _SSSSize: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _SubsurfaceAmount: 9.11
+    - _Subsurfacesize: 20
+    - _TerrainOffset: 0
+    - _TerrainOffsetX: 0
+    - _TerrainOffsetY: 0
+    - _TerrainSize: 1024
+    - _ToggleSwitch0: 0
+    - _ToggleSwitch1: 0
+    - _TransmissionAmount: 4.19
+    - _TransmissionSize: 20
+    - _Transmissionsize: 0
+    - _UVSec: 0
+    - _Uselightcolor: 0
+    - _WindAmplitudeMultiplier: 10
+    - _WindSpeed: 0.5
+    - _WindStiffness: 1
+    - _WindSwinging: 0.565
+    - _WindTint: 0
+    - _WindWeight: 0.17
+    - _Windspeed: 0.201
+    - _Windweight: 1
+    - _ZWrite: 1
+    - __dirty: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorBottom: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorTop: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ObstaclePosition: {r: -118.41, g: 0.365, b: -132.43, a: 0}
+    - _SSSColor: {r: 0.9368154, g: 1, b: 0.3455882, a: 1}
+    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SubsurfaceColor: {r: 1, g: 0.9310344, b: 0, a: 0}
+    - _WindDirection: {r: 0.93536794, g: 0, b: 0.35367614, a: 0}
