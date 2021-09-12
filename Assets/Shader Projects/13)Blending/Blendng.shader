@@ -9,7 +9,7 @@ Shader "Custom/Blendng"
     {
         Tags { "Queue"="Transparent" }
         //Blend One One
-        //Blend SrcAlpha OneMinusSrcAlpha
+        Blend SrcAlpha OneMinusSrcAlpha
         //Blend DstColor Zero
         Pass 
         {

@@ -11,6 +11,7 @@ Shader "Custom/Toon"
 
 	SubShader
 	{
+		// Ramp texture
 		CGPROGRAM
 		#pragma surface surf ToonRamp
 
@@ -54,6 +55,7 @@ Shader "Custom/Toon"
 		}
 		ENDCG
 
+		// Advanced outline
 		Pass
 		{
 			Cull Front
